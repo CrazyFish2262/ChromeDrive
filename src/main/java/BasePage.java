@@ -9,7 +9,11 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public WebElement find (By locator){
+    public WebElement find(By locator){
         return driver.findElement(locator);
+    }
+
+    public void click(By locator){
+        driver.findElement(locator).click();
     }
 }

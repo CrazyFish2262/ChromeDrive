@@ -1,14 +1,24 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends BasePage{
 
-    private String login = "45687@mail.ru";
-    private String password = "qwerty4575";
+    private String login = "vlad.bogomoltsev@gmail.com";
+    private String password = "vlad.bogomoltsev_mm";
 
 
     LoginPage(WebDriver driver) {
         super(driver);
     }
+
+    public String getLogin(){
+        return login;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+
 
 }
