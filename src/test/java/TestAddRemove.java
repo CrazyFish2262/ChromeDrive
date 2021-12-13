@@ -3,12 +3,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import sun.reflect.misc.FieldUtil;
 
 import java.io.File;
 import java.security.SecureRandom;
+import java.time.Duration;
 import java.util.List;
 
 public class TestAddRemove {
@@ -107,7 +110,7 @@ Assert.assertTrue(actualResult.contains("Поиск в Каталоге."));
 
 }
 */
-public long getFolderSizeBefore() {
+/*public long getFolderSizeBefore() {
     String folderPath = "C:\\Users\\st\\Downloads\\";
     File file = new File(folderPath);
     long length = 0;
@@ -125,8 +128,8 @@ public long getFolderSizeBefore() {
     System.out.println("Folder size before downloading: " + sizeBefore + " bytes");
         driver.get("https://the-internet.herokuapp.com/download");
         List<WebElement> list = driver.findElements(By.xpath("//div[@id=\"content\"]/div//a"));
-/*        list.forEach(element ->
-                System.out.println(element.getAttribute("href")));*/
+*//*        list.forEach(element ->
+                System.out.println(element.getAttribute("href")));*//*
         WebElement file = list.get(random.nextInt(list.size()));
         file.click();
         Thread.sleep(5000);
@@ -151,5 +154,21 @@ public long getFolderSizeBefore() {
             length += tmp.length();
         }
         return length;
+    }*/
+
+
+    @Test
+    public void findRenderedAfter() throws InterruptedException {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement dynamicLoading = driver.findElement(By.xpath(".//*[@href=\"/dynamic_loading\"]"));
+        dynamicLoading.click();
+        WebElement example2 = driver.findElement(By.xpath(".//*[@href=\"/dynamic_loading/2\"]"));
+        example2.click();
+        WebElement startButton = driver.findElement(By.tagName("button"));
+        startButton.click();
+        WebElement renderedElement = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id=\"finish\"]/h4")));
+        Assert.assertEquals(renderedElement.getText(), "Hello World!");
     }
+
 }
