@@ -5,7 +5,10 @@ public class LoginPage extends BasePage{
 
     private String login = "vlad.bogomoltsev@gmail.com";
     private String password = "vlad.bogomoltsev_mm";
+
+    public static final By newsSectionTitle = By.xpath("//*[@id='blog-articles']/h1//i");
     public static final By newsArticleItem = By.xpath("//div[@class='blog-article']//a");
+    public static final By footerMenuItem = By.xpath("//li[@class='footer-menu-item']//a");
 
     LoginPage(WebDriver driver) {
         super(driver);

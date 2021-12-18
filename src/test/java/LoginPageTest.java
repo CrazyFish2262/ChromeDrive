@@ -4,10 +4,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPageTest {
     WebDriver driver;
@@ -28,16 +30,40 @@ public class LoginPageTest {
     }
 
     @Test
-    public void newsArticleTest() {
-        List<WebElement> news = driver.findElements(LoginPage.newsArticleItem);
-        System.out.println("Раздел News содержит следующие статьи");
-        news.forEach(article -> {
-            System.out.println(article.getAttribute("href"));
-            System.out.println(article.getText());
-            article.click();
-        });
+    public void newsSectionNameTest() {
 
+String actualTitle = loginPage.find(LoginPage.newsSectionTitle).getText();
+Assert.assertEquals(actualTitle,"News");
     }
+
+
+    @Test
+    public void newsArticleTest() {
+        System.out.println("Проверка ссылок из раздела News");
+        List<WebElement> news = driver.findElements(LoginPage.newsArticleItem);
+        System.out.println("Раздел News содержит следующие статьи:");
+        for (WebElement article : news) {
+            System.out.println(article.getText());
+            System.out.println(article.getAttribute("href"));
+            System.out.println();
+            article.click();
+        }
+    }
+
+    @Test
+    public void footerLinksTest() {
+        System.out.println("Проверка ссылок футтера");
+        List<WebElement> news = driver.findElements(LoginPage.footerMenuItem);
+        System.out.println("Футер-меню содержит следующие ссылки:");
+        for (WebElement article : news) {
+            System.out.println(article.getText());
+            System.out.println(article.getAttribute("href"));
+            System.out.println();
+            article.click();
+        }
+    }
+
+
 
 /*    @Test
     public void loginTest() {
@@ -45,7 +71,6 @@ public class LoginPageTest {
         loginPage.find(passwordInput).sendKeys(loginPage.getPassword());
         loginPage.click(loginButton);
     }*/
-
 
 
 }
