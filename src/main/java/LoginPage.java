@@ -5,7 +5,7 @@ public class LoginPage extends BasePage{
 
     private String login = "vlad.bogomoltsev@gmail.com";
     private String password = "vlad.bogomoltsev_mm";
-
+    public static final By newsArticleItem = By.xpath("//div[@class='blog-article']//a");
 
     LoginPage(WebDriver driver) {
         super(driver);
