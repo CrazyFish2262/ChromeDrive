@@ -139,12 +139,14 @@ public class HomePageTest {
         //сравниваем текст найденной записи с текстом созданной тестовой записи
         Thread.sleep(2000);
         waitElement(HomePage.itemBodyList);
-        Assert.assertEquals(homePage.getText(HomePage.itemBodyList), testText);
+        Assert.assertEquals(homePage.getText(HomePage.itemBodyList), testText);//через contains
     }
 
 
+
+
     @Test
-    public void logout() throws InterruptedException {
+    public void logoutTest() throws InterruptedException {
         Thread.sleep(2000);
         driver.get("https://my.monkkee.com/#/entries");
         Thread.sleep(2000);

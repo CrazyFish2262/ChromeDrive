@@ -9,6 +9,7 @@ public class LoginPage extends BasePage{
     public static final By newsSectionTitle = By.xpath("//*[@id='blog-articles']/h1");
     public static final By newsArticleItem = By.xpath("//div[@class='blog-article']//a");
     public static final By footerMenuItem = By.xpath("//li[@class='footer-menu-item']//a");
+    public static final By newPageTitle = By.xpath("//*[@class='post-title']/h1");
 
     LoginPage(WebDriver driver) {
         super(driver);

@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -30,12 +31,14 @@ public class LoginPageTest {
     }
 
 
+
     @Test
     public void newsSectionNameTest() {
 
 String actualTitle = loginPage.find(LoginPage.newsSectionTitle).getText();
 Assert.assertEquals(actualTitle,"News");
     }
+
 
 
     @Test
@@ -45,11 +48,25 @@ Assert.assertEquals(actualTitle,"News");
         System.out.println("Проверка ссылок из раздела News");
         List<WebElement> news = driver.findElements(LoginPage.newsArticleItem);
         System.out.println("Раздел News содержит следующие статьи:");
+
+        String baseHandle = driver.getWindowHandle();
+
         for (WebElement article : news) {
             System.out.println(article.getText());
             System.out.println(article.getAttribute("href"));
             System.out.println();
             article.click();
+            ArrayList<String> handles = new ArrayList<>(driver.getWindowHandles());
+
+            String lastHandle = handles.get(handles.size() - 1);
+
+            driver.switchTo().window(lastHandle);
+            //check
+
+            System.out.println(driver.findElement(By.xpath("/html/body/section[1]/div/div/div[1]/div[1]/div/div[1]/h1")).getText());
+
+            driver.close();
+            driver.switchTo().window(baseHandle);
         }
         Thread.sleep(3000);
     }
@@ -78,6 +95,7 @@ Assert.assertEquals(actualTitle,"News");
         loginPage.find(passwordInput).sendKeys(loginPage.getPassword());
         loginPage.click(loginButton);
     }
+
 
 
 }
