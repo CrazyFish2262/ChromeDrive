@@ -36,7 +36,7 @@ public class HomePageTest {
         loginPage.find(loginInput).sendKeys(loginPage.getLogin());
         loginPage.find(passwordInput).sendKeys(loginPage.getPassword());
         loginPage.click(loginButton);
-
+        Thread.sleep(2000);
     }
 
 
@@ -46,39 +46,12 @@ public class HomePageTest {
     }
 
 
-
     @Test
-       public void addEntryTest() throws InterruptedException {
-           waitElement(HomePage.addButton);
-           homePage.find(HomePage.addButton).click();
-           waitElement(HomePage.editableArea);
-           String testText = UUID.randomUUID().toString() + " test check";
-           homePage.find(HomePage.editableArea).click();
-           homePage.find(HomePage.editableArea).sendKeys(testText);
-   Thread.sleep(4000);
-           homePage.find(HomePage.homeButton).click();
-
-           waitElement(HomePage.itemBodyList);
-
-           List<WebElement> elements = driver.findElements(HomePage.itemBodyList);
-           boolean flag = false;
-
-           for (WebElement element : elements) {
-               if(element.getText().equals(testText))
-                   flag = true;
-           }
-           Assert.assertTrue(flag);
-       }
-
-
-
-
-
-    @Test
-    public void deleteEntry() throws InterruptedException {
-       //создаём тестовую запись
+    public void addEntryTest() throws InterruptedException {
+        Thread.sleep(2000);
         waitElement(HomePage.addButton);
         homePage.find(HomePage.addButton).click();
+        Thread.sleep(2000);
         waitElement(HomePage.editableArea);
         String testText = UUID.randomUUID().toString() + " test check";
         homePage.find(HomePage.editableArea).click();
@@ -86,36 +59,22 @@ public class HomePageTest {
         Thread.sleep(4000);
         homePage.find(HomePage.homeButton).click();
 
-       //создаём список веб-элементов (записей) до удаления
         waitElement(HomePage.itemBodyList);
-        List<WebElement> beforeDelete = driver.findElements(HomePage.itemBodyList);
-        System.out.println("Записи ДО удаления:");
-        beforeDelete.forEach(webElement ->
-                System.out.println(webElement.getText()));
-        System.out.println("Итого: " + beforeDelete.size());
 
-        //выбираем чекбокс новой созданной тестовой записи
-        homePage.find(HomePage.entryCheckbox).click();
-        homePage.find(HomePage.deleteButton).click();
-        driver.switchTo().alert().accept();             //переключаем фокус на уведомление и подтверждаем согласие
+        List<WebElement> elements = driver.findElements(HomePage.itemBodyList);
+        boolean flag = false;
 
-        //создаём список веб-элементов (записей) после удаления
-        waitElement(HomePage.itemBodyList);
-        List<WebElement> afterDelete = driver.findElements(HomePage.itemBodyList);
-        System.out.println();
-        System.out.println("Записи ПОСЛЕ удаления:");
-        afterDelete.forEach(webElement ->
-                System.out.println(webElement.getText()));
-        System.out.println("Итого: " + afterDelete.size());
-
-        //сравниваем размер списка ДО и ПОСЛЕ удаления
-        Thread.sleep(4000);
-        Assert.assertEquals(afterDelete.size(), beforeDelete.size() - 1);
+        for (WebElement element : elements) {
+            if (element.getText().equals(testText))
+                flag = true;
+        }
+        Assert.assertTrue(flag);
     }
 
 
     @Test
-    public void findEntry() throws InterruptedException {
+    public void deleteEntry() throws InterruptedException {
+        Thread.sleep(2000);
         //создаём тестовую запись
         waitElement(HomePage.addButton);
         homePage.find(HomePage.addButton).click();
@@ -126,7 +85,51 @@ public class HomePageTest {
         Thread.sleep(4000);
         homePage.find(HomePage.homeButton).click();
 
+        //создаём список веб-элементов (записей) до удаления
+        waitElement(HomePage.itemBodyList);
+        List<WebElement> beforeDelete = driver.findElements(HomePage.itemBodyList);
+        System.out.println("Записи ДО удаления:");
+        beforeDelete.forEach(webElement ->
+                System.out.println(webElement.getText()));
+        System.out.println("Итого записей до удаления: " + beforeDelete.size());
+
+        //выбираем чекбокс новой созданной тестовой записи
+        homePage.find(HomePage.entryCheckbox).click();
+        homePage.find(HomePage.deleteButton).click();
+        driver.switchTo().alert().accept();             //переключаем фокус на уведомление и подтверждаем согласие
+
+        //создаём список веб-элементов (записей) после удаления
+        Thread.sleep(2000);
+        List<WebElement> afterDelete = driver.findElements(HomePage.itemBodyList);
+        System.out.println();
+        System.out.println("Записи ПОСЛЕ удаления:");
+        afterDelete.forEach(element ->
+                System.out.println(element.getText()));
+        System.out.println("Итого записей после удаления: " + afterDelete.size());
+
+        //сравниваем размер списка ДО и ПОСЛЕ удаления
+        Thread.sleep(2000);
+        Assert.assertEquals(afterDelete.size(), beforeDelete.size() - 1);
+    }
+
+
+
+    @Test
+    public void findEntry() throws InterruptedException {
+        Thread.sleep(2000);
+        //создаём тестовую запись
+        waitElement(HomePage.addButton);
+        homePage.find(HomePage.addButton).click();
+        waitElement(HomePage.editableArea);
+        String testText = UUID.randomUUID().toString() + " test check";
+        homePage.find(HomePage.editableArea).click();
+        Thread.sleep(1000);
+        homePage.find(HomePage.editableArea).sendKeys(testText);
+        Thread.sleep(4000);
+        homePage.find(HomePage.homeButton).click();
+
         //находим и заполняем поле поиска записи
+        Thread.sleep(2000);
         waitElement(HomePage.searchInputArea);
         homePage.find(HomePage.searchInputArea).click();
         Thread.sleep(2000);
@@ -134,35 +137,23 @@ public class HomePageTest {
         homePage.find(HomePage.searchButton).click();
 
         //сравниваем текст найденной записи с текстом созданной тестовой записи
+        Thread.sleep(2000);
         waitElement(HomePage.itemBodyList);
         Assert.assertEquals(homePage.getText(HomePage.itemBodyList), testText);
     }
 
 
-
-
-
-
-/*    @Test
+    @Test
     public void logout() throws InterruptedException {
+        Thread.sleep(2000);
         driver.get("https://my.monkkee.com/#/entries");
-homePage.find(HomePage.logoutButton).click();
-Thread.sleep(2000);
-Assert.assertEquals(driver.getCurrentUrl(),"https://my.monkkee.com/#/entries");
+        Thread.sleep(2000);
+        homePage.find(HomePage.logoutButton).click();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://my.monkkee.com/#/");
     }
 
-    */
 
 
-/*
-@Test
-public void logout() throws InterruptedException {
-    driver.get("https://my.monkkee.com/#/entries");
-    Thread.sleep(2000);
-    homePage.find(HomePage.logoutButton).click();
-    Thread.sleep(2000);
-    Assert.assertEquals(driver.getCurrentUrl(),"https://my.monkkee.com/#/entries");
-}
-*/
 
 }

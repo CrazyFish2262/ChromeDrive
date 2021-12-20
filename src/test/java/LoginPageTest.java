@@ -29,6 +29,7 @@ public class LoginPageTest {
         Thread.sleep(3000);
     }
 
+
     @Test
     public void newsSectionNameTest() {
 
@@ -38,7 +39,9 @@ Assert.assertEquals(actualTitle,"News");
 
 
     @Test
-    public void newsArticleTest() {
+    public void newsArticleTest() throws InterruptedException {
+        driver.get("https://my.monkkee.com/#/");
+        Thread.sleep(3000);
         System.out.println("Проверка ссылок из раздела News");
         List<WebElement> news = driver.findElements(LoginPage.newsArticleItem);
         System.out.println("Раздел News содержит следующие статьи:");
@@ -48,10 +51,13 @@ Assert.assertEquals(actualTitle,"News");
             System.out.println();
             article.click();
         }
+        Thread.sleep(3000);
     }
 
     @Test
-    public void footerLinksTest() {
+    public void footerLinksTest() throws InterruptedException {
+        driver.get("https://my.monkkee.com/#/");
+        Thread.sleep(3000);
         System.out.println("Проверка ссылок футтера");
         List<WebElement> news = driver.findElements(LoginPage.footerMenuItem);
         System.out.println("Футер-меню содержит следующие ссылки:");
@@ -61,16 +67,17 @@ Assert.assertEquals(actualTitle,"News");
             System.out.println();
             article.click();
         }
+        Thread.sleep(3000);
     }
 
 
 
-/*    @Test
+    @Test
     public void loginTest() {
         loginPage.find(loginInput).sendKeys(loginPage.getLogin());
         loginPage.find(passwordInput).sendKeys(loginPage.getPassword());
         loginPage.click(loginButton);
-    }*/
+    }
 
 
 }
