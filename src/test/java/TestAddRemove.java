@@ -23,7 +23,6 @@ public class TestAddRemove {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
     }
     /*
 
