@@ -1,17 +1,15 @@
 package Postman.Users;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TheRoot {
+public class PantoneRoot{
     public int page;
     public int per_page;
     public int total;
     public int total_pages;
-    public List <Users> data;
+    public List<Pantone> data;
     public Support support;
 
-
-    public TheRoot() {
+    public PantoneRoot() {
     }
 }
