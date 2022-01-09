@@ -23,7 +23,6 @@ public class TestAddRemove {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
     }
     /*
 
@@ -157,7 +156,7 @@ Assert.assertTrue(actualResult.contains("Поиск в Каталоге."));
     }*/
 
 
-    @Test
+/*    @Test
     public void findRenderedAfter() throws InterruptedException {
         driver.get("https://the-internet.herokuapp.com/");
         WebElement dynamicLoading = driver.findElement(By.xpath(".//*[@href=\"/dynamic_loading\"]"));
@@ -169,6 +168,21 @@ Assert.assertTrue(actualResult.contains("Поиск в Каталоге."));
         WebElement renderedElement = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id=\"finish\"]/h4")));
         Assert.assertEquals(renderedElement.getText(), "Hello World!");
+    }*/
+
+    @Test
+    public void findRenderedAfter() throws InterruptedException {
+        driver.get("https://the-internet.herokuapp.com/");
+        String fileName = "test.png";
+        WebElement fileUpload = driver.findElement(By.xpath(".//*[@href=\"/upload\"]"));
+       fileUpload.click();
+        WebElement chooseFile = driver.findElement(By.id("file-upload"));
+        chooseFile.sendKeys("C:\\Users\\st\\Downloads\\" + fileName);
+        WebElement submitButton = driver.findElement(By.id("file-submit"));
+        submitButton.click();
+        WebElement uploadedFile = driver.findElement(By.id("uploaded-files"));
+        Assert.assertEquals(uploadedFile.getText(),fileName);
     }
+
 
 }
