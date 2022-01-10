@@ -27,7 +27,7 @@ public class APItest {
     WebDriver driver;
 
 
-    @BeforeTest
+   @BeforeTest
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
