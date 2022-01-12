@@ -1,12 +1,16 @@
 package Recall;
 
+import org.checkerframework.checker.units.qual.C;
+
+import javax.crypto.spec.PSource;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-
+/*
         /// задание для контрольной работы
 
         //добавить иницирование переменных
@@ -122,17 +126,79 @@ public class Main {
                             array[i][u][k][l][h] = random.nextInt(5);
                             System.out.println(array[i][u][k][l][h]);
                         }
-
-
                     }
-
                 }
-
-
             }
-
-
         }
+
+
+        int[] arrayOne = new int[10];
+        int[] arraySorting = new int[arrayOne.length - 1];
+        int maxElement = 0;
+        Random random1 = new Random();
+        System.out.println("Массив до сортировки");
+        for (int l = 0; l < arrayOne.length; l++) {
+            arrayOne[l] = random1.nextInt(10);
+            System.out.println(arrayOne[l]);
+        }
+        System.out.println();
+        System.out.println("Массив после сортировки");
+        for (int i = 0; i < arrayOne.length - 1; i++) {
+            for (int j = arrayOne.length - 1; j > i; j--) {
+                if (arrayOne[j - 1] > arrayOne[j]) {
+                    int tmp = arrayOne[j - 1];
+                    arrayOne[j - 1] = arrayOne[j];
+                    arrayOne[j] = tmp;
+                }
+            }
+            *//* System.out.println(arrayOne[i]);*//*
+        }
+        System.out.println(Arrays.toString(arrayOne));
+
+        System.out.println();
+
+
+        int[][] matrix = new int[5][5];
+        Random random3 = new Random();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int t = 0; t < matrix[i].length; t++) {
+                matrix[i][t] = random3.nextInt(10);
+                System.out.print(matrix[i][t] + " ");
+            }
+            System.out.println();
+        }
+
+        int sumMain = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int t = 0; t < matrix[i].length; t++) {
+                if (i == t) {
+                    sumMain += matrix[i][t];
+                }
+            }
+        }
+        System.out.println("Сумма элементов главной диагонали - " + sumMain);
+
+        int sumSub = 0;
+        for (int i = matrix.length-1; i >= 0; i--) {
+            for (int t = 0; t < matrix[i].length; t++) {
+                if ((t + i) == matrix.length-1) {
+*//*                    System.out.println("t - " + t);
+                    System.out.println("i - " + i);
+                    System.out.println("t+i - "+ matrix[i][t]);*//*
+                    sumSub += matrix[i][t];
+                }
+            }
+        }
+        System.out.println("Сумма элементов побочной диагонали - " + sumSub);
+        System.out.println("Разница - " + (sumMain-sumSub));*/
+
+
+        Canin dog = new Canin("Dog", "Chukky", 2,"barks");
+        Felidae cat = new Felidae("Cat", "Tom", 2, "meows");
+        dog.getSpecies();
+        cat.getSpecies();
     }
+
 }
+
 
