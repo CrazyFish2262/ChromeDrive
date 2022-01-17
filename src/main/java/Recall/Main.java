@@ -1,11 +1,11 @@
 package Recall;
 
-import org.checkerframework.checker.units.qual.C;
+import com.google.gson.internal.bind.util.ISO8601Utils;
+import com.sun.javafx.collections.MappingChange;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import sun.java2d.pipe.AAShapePipe;
 
-import javax.crypto.spec.PSource;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -193,12 +193,79 @@ public class Main {
         System.out.println("Разница - " + (sumMain-sumSub));*/
 
 
-        Canin dog = new Canin("Dog", "Chukky", 2,"barks");
+        Canidae dog = new Canidae("Dog", "Chukky", 2, "barks");
         Felidae cat = new Felidae("Cat", "Tom", 2, "meows");
+        dog.getInfo();
         dog.getSpecies();
+        dog.swim();
+
+        System.out.println();
+        cat.getInfo();
         cat.getSpecies();
+        cat.swim();
+
+        System.out.println();
+
+        String str = null;
+        try {
+            System.out.println();
+            if (str == null) {
+                throw new MyException("String can not be empty!");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println();
+
+float a = 0;
+        ArrayList<Integer> list = new ArrayList<>(10);
+        list.add(1);
+        list.add(18);
+        list.add(12);
+        list.add(8);
+        list.add(7);
+        list.add(77);
+        list.add(6);
+        list.add(61);
+        list.add(68);
+        list.add(4);
+        for (int i = 0; i < list.size();i++){
+            a = list.get(i)/3;
+            System.out.println(a);
+        }
+        System.out.println(list);
+
+        System.out.println("Размер списка - " + list.size());
+
+        System.out.println();
+
+
+        HashSet<String> hashSet = new HashSet<>();
+        hashSet.add("pen");
+        hashSet.add("pencil");
+        hashSet.add("pencil");
+        hashSet.add("pen");
+        hashSet.add("eraser");
+        hashSet.add("sharpener");
+        System.out.println(hashSet);
+        System.out.println("Включает только уникальные значения");
+        System.out.println("Длина списка - " + hashSet.size());
+
+        System.out.println();
+
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.put("Vasya", 15);
+        hashMap.put("Ivan", 14);
+        hashMap.put("Sveta", 18);
+        hashMap.put("Sveta", 19);
+        System.out.println(hashMap);
+        System.out.println("Включает только уникальные значения");
+        System.out.println("Размер списка - " + hashMap.size());
     }
 
+
+
+
+
 }
-
-

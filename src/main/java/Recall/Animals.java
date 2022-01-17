@@ -1,6 +1,6 @@
 package Recall;
 
-public abstract class Animals {
+public abstract class Animals implements Info, LoveToSwim {
     String species;
     String name;
     int age;
@@ -14,5 +14,8 @@ public abstract class Animals {
     }
 
     public abstract void getSpecies();
+    public void getName(){
+        System.out.println("Имя - " + name);
+    }
 
 }
