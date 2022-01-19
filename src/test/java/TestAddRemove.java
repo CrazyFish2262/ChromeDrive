@@ -81,7 +81,7 @@ public void listE() {
 */
 
 
-/*@Test
+@Test
     public void findMers(){
     driver.get("https://www.onliner.by/");
     WebElement autobaraholka = driver.findElement(By.xpath(".//ul[@class='b-main-navigation']/li[3]"));
@@ -95,7 +95,7 @@ public void listE() {
     });
 
 
-}*/
+}
 
 
 /*
@@ -170,6 +170,7 @@ Assert.assertTrue(actualResult.contains("Поиск в Каталоге."));
         Assert.assertEquals(renderedElement.getText(), "Hello World!");
     }*/
 
+/*
     @Test
     public void findRenderedAfter() throws InterruptedException {
         driver.get("https://the-internet.herokuapp.com/");
@@ -183,6 +184,7 @@ Assert.assertTrue(actualResult.contains("Поиск в Каталоге."));
         WebElement uploadedFile = driver.findElement(By.id("uploaded-files"));
         Assert.assertEquals(uploadedFile.getText(),fileName);
     }
+*/
 
 
 }
