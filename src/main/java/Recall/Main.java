@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MyException {
 
 //Задание №1
 
@@ -54,7 +54,7 @@ public class Main {
 
         //продемонстрировать работу конструкции switch - case - default
 
-        String familyMember = "сестра";
+        String familyMember = "Сестра";
         switch (familyMember) {
             case "Папа":
                 System.out.println("Папа может починить кран, но не хочет");
@@ -117,7 +117,7 @@ public class Main {
             try {
                 throw new MyException("Нельзя делить на ноль!");
             } catch (MyException exception) {
-                exception.getMessage();
+                System.out.println(exception.getMessage());
             }
         }
 
@@ -136,15 +136,15 @@ public class Main {
         ArrayList<Float> list = new ArrayList<>();
         Random random2 = new Random();
         for (int i = 0; i < 10; i++) {
-            double abc = random2.nextFloat();
-            list.add((float) abc);
+            float abc = random2.nextFloat();
+            list.add(abc);
         }
         System.out.println("Список чисел:");
         System.out.println("Размер списка - " + list.size());
         System.out.println(list);
         for (int i = 0; i < list.size(); i++) {
-            double mj = list.get(i) / 3;
-            System.out.println(mj);
+            list.set(i,list.get(i) / 3);
+            System.out.println(list.get(i));
         }
 
         System.out.println();

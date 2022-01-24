@@ -1,14 +1,17 @@
+import Recall.Response;
 import Recall.UserForPet;
 import io.restassured.http.ContentType;
-import io.restassured.response.ValidatableResponse;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Array;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -24,12 +27,12 @@ public class ForExamTest {
         driver.manage().window().maximize();
     }
 
-    @Test
+    @Test //задание №8
     public void findMers() throws InterruptedException {
         driver.get("https://www.onliner.by/");
         WebElement autobaraholka = driver.findElement(By.xpath(".//ul[@class='b-main-navigation']/li[3]"));
         autobaraholka.click();
-        WebElement dropdown = driver.findElement(By.xpath(".//*[@id=\"container\"]/div/div/div/div/div/div[2]/div/div/div[3]/div/div[2]/div[2]/div[2]/div[2]/div/div[2]/div[1]/div/div/div[1]"));
+        WebElement dropdown = driver.findElement(By.xpath("(//div[@class=\"vehicle-form__row\"]//div[@class=\"vehicle-form__line vehicle-form__line_condensed-other\"])[4]"));
         dropdown.click();
         Thread.sleep(1000);
         WebElement brand = driver.findElement(By.xpath(".//ul[@class='dropdown-style__list dropdown-style__list_brand']/li[7]"));
@@ -41,28 +44,33 @@ public class ForExamTest {
             System.out.println(element.getAttribute("href"));
         });
         System.out.println();
-        System.out.println("Искомая ссылка: " + list.get(32).getAttribute("href"));
+        System.out.println("Искомая ссылка: " + list.get(31).getAttribute("href"));
+        driver.get(list.get(31).getAttribute("href"));
 
     }
 
 
-    @Test
+    @Test //задание №9
     public void first() {
-        UserForPet userForPet = new UserForPet(0, "string", "String","String", "String","String","String", 0);
-        ValidatableResponse pets = given()
+        UserForPet newUser = new UserForPet(0, "string", "string", "string", "string", "string", "string", 0);
+        UserForPet[] userForPet = new UserForPet[1];
+        userForPet[0] = newUser;
+        Response newRequest = given()
                 .contentType(ContentType.JSON)
                 .baseUri("https://petstore.swagger.io/v2/")
                 .body(userForPet)
-                .post("/user/createWithArray")
+                .post("user/createWithArray")
                 .then()
+                .assertThat()
                 .statusCode(200)
                 .and()
-                .statusLine("OK");
+                .extract()
+                .body()
+                .as(Response.class);
+        System.out.println(newRequest.toJson());
+        Assert.assertEquals(newRequest.message, "ok");
 
-            }
-
-
-
+    }
 
 
 }
